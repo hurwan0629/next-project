@@ -28,11 +28,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col items-center justify-center">
-        <header className="w-full h-16 flex items-center justify-center">
+        <header className="w-full h-16 flex items-center justify-center bg-blue-300">
           Next Client Header
         </header>
         {children}
-        <footer className="w-full h-16 flex items-center justify-center">
+        <footer className="w-full h-16 flex items-center justify-center bg-gray-400">
           Next Client Footer
         </footer>
       </body>

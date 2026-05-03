@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from "react";
 import { publicEnv } from "@/lib/env.public";
+import Link from "next/link";
 
 export default function Register() {
 
@@ -114,12 +115,12 @@ export default function Register() {
                 <div className="flex flex-col w-[70%] h-18 py-2 ">
                     <div className="flex w-full h-16 gap-1 items-center">
                         <input type="text" onChange={(e) => setMemberId(e.target.value)} placeholder="아이디" className="h-12 flex-1 p-2 border border-gray-300 rounded bg-white" />
-                        <button onClick={checkDuplicateId} className="h-full w-24 prounded bg-green-500 px-3 text-white flex items-center justify-center rounded border border-transparent">중복 확인</button>
+                        <button onClick={checkDuplicateId} className="cursor-pointer h-full w-24 prounded bg-green-500 px-3 text-white flex items-center justify-center rounded border border-transparent">중복 확인</button>
                     </div>
                     {idWarning==="notComplete"
                      ? (<p className="p-0 m-0 text-red-500">아이디를 제대로 입력해주세요</p>)
                      : idWarning==="duplicate"
-                        ? (<p className="p-0 m-0 text-red-500">경고입니다</p>)
+                        ? (<p className="p-0 m-0 text-red-500">중복된 아이디입니다</p>)
                         : idWarning==="complete"
                             ? (<p className="p-0 m-0 text-green-500">사용 가능한 아이디입니다</p>)
                             :  (<></>)
@@ -146,7 +147,7 @@ export default function Register() {
                         <option value="">직접 입력</option>
                     </select>
                 </div>
-                <button onClick={regist} className="w-32 h-12 rounded border border-black bg-green-300">회원가입 하기</button>
+                <button onClick={regist} className="cursor-pointer w-32 h-12 rounded border border-black bg-green-300">회원가입 하기</button>
                 {registCheck==="fail"
                  ? (<p className="p-0 m-0 text-red-500">조건이 만족되지 않았습니다</p>)
                  : registCheck==="pending"
@@ -154,7 +155,8 @@ export default function Register() {
                    : registCheck==="serverFail"
                      ? (<p className="p-0 m-0 text-red-500">서버 처리중 오류가 있었습니다.</p>)
                      : (<></>)}
-                <button onClick={showState} className="w-32 h-16 rounded border border-black bg-blue-300">State 확인하기</button>
+                <button onClick={showState} className="cursor-pointer w-32 h-16 rounded border border-black bg-blue-300">State 확인하기</button>
+                <Link href="/" className="border border-black py-2 px-4 rounded-md bg-gray-100 shadow-xl">메인으로</Link>
             </div>
         </main>
     )

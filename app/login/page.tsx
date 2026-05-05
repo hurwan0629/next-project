@@ -26,6 +26,7 @@ export default function LoginPage() {
         try {
             const response = await fetch(`${publicEnv.API_URL}/member/login`,{
                 method: "POST",
+                credentials: "include",
                 headers: {
                     'Content-Type': 'application/json'
                 },

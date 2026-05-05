@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link"
 import ReduxProvider from "@/components/ReduxProvider";
+import AuthInitializer  from "@/components/AuthInitializer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col items-center justify-center">
         <ReduxProvider>
+          <AuthInitializer />
           <header className="w-full h-16 flex items-center justify-center bg-blue-300">
             <Link className="bg-blue-100 rounded-md border border-black p-3" href="/">Next Client Header</Link>
           </header>

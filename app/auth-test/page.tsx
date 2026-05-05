@@ -8,24 +8,29 @@ export default function AuthTestPage() {
     const [memberInfo, setMemberInfo] = useState("");
 
     async function fetchMemberInfo() {
-        const response = await fetch(`${publicEnv.API_URL}/member/me`, {
-            credentials: "include",
-        })
+        try {
+            const response = await fetch(`${publicEnv.API_URL}/member/me`, {
+                credentials: "include",
+            })
 
-        if(response.status===401) {
-            setMemberInfo("로그인을 해주세요");
-            return
+            if(response.status===401) {
+                setMemberInfo("로그인을 해주세요");
+                return
+            }
+            else if(!response.ok) {
+                setMemberInfo(`
+                    response.status: ${response.status}
+                    에러가 발생했습니다.`)
+                return
+            }
+            
+            const data = await response.json()
+
+            setMemberInfo(JSON.stringify(data, null, 2));
+        } catch (error) {
+            setMemberInfo(`${error}`)
         }
-        else if(!response.ok) {
-            setMemberInfo(`
-                response.status: ${response.status}
-                에러가 발생했습니다.`)
-            return
-        }
 
-        const data = await response.json()
-
-        setMemberInfo(JSON.stringify(data, null, 2));
 
     }
 

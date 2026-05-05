@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { publicEnv } from "@/lib/env.public";
 import DefaultModal from "@/components/DefaultModal";
+import { useAppDispatch } from "@/store/hook";
+import { loginSuccess } from "@/store/authSlice"
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
     
@@ -13,6 +16,11 @@ export default function LoginPage() {
         modalMessage: string
         modalLoading?: boolean 
     } | null>(null)
+
+    const dispatch = useAppDispatch();
+    const router = useRouter();
+
+    const [loginDone, setLoginDone] = useState(false);
 
     async function tryLogin() {
         console.log("tryLogin()");
@@ -50,6 +58,12 @@ export default function LoginPage() {
             if(!response.ok) {
                 throw new Error(`HTTP error: ${response.status}`)
             }
+
+            dispatch(loginSuccess({
+                memberName: data.memberName
+            }))
+
+            setLoginDone(true);
 
             setModal({
                 modalTitle: "로그인 성공",
@@ -91,7 +105,13 @@ export default function LoginPage() {
                     modalTitle={modal.modalTitle}
                     modalMessage={modal.modalMessage}
                     modalLoading={modal.modalLoading}
-                    onClose={() => setModal(null)} />
+                    onClose={() => {
+                        setModal(null)
+
+                        if (loginDone) {
+                            router.push("/");
+                        }
+                    }} />
             )}
         </main>
     )

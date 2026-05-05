@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link"
+import ReduxProvider from "@/components/ReduxProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,13 +30,15 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col items-center justify-center">
-        <header className="w-full h-16 flex items-center justify-center bg-blue-300">
-          <Link className="bg-blue-100 rounded-md border border-black p-3" href="/">Next Client Header</Link>
-        </header>
-        {children}
-        <footer className="w-full h-16 flex items-center justify-center bg-gray-400">
-          Next Client Footer
-        </footer>
+        <ReduxProvider>
+          <header className="w-full h-16 flex items-center justify-center bg-blue-300">
+            <Link className="bg-blue-100 rounded-md border border-black p-3" href="/">Next Client Header</Link>
+          </header>
+          {children}
+          <footer className="w-full h-16 flex items-center justify-center bg-gray-400">
+            Next Client Footer
+          </footer>
+        </ReduxProvider>
       </body>
     </html>
   );

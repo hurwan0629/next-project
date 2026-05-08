@@ -9,6 +9,7 @@ export default function Home() {
       <LinkButton href="/logout" text="로그아웃" />
       <LinkButton href="/auth-test" text="인증/인가 테스트" />
       <LinkButton href="/api-test" text="서버 부하 테스트" />
+      <LinkButton href="/post-test" text="게시판" />
     </main>
   );
 }

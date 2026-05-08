@@ -30,7 +30,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col items-center justify-center">
+      <body className="min-h-screen flex flex-col items-center justify-center">
         <ReduxProvider>
           <AuthInitializer />
           <header className="w-full h-16 flex items-center justify-center bg-blue-300">

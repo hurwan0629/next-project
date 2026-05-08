@@ -5,7 +5,6 @@ import { logout } from "@/store/authSlice";
 import { publicEnv } from "@/lib/env.public";
 import DefaultModal from "@/components/DefaultModal";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function LogoutPage() {
 

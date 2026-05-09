@@ -1,3 +1,4 @@
+'use client'
 
 type loadingState = {
     onLoading: string;
@@ -10,7 +11,7 @@ export type option2 = {
     onOption: () => void;
 }
 
-type defaultModalProps = {
+export type defaultModalProps = {
     modalTitle: string
     modalMessage: string;
     modalLoading?: boolean;

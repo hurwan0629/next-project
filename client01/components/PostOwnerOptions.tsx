@@ -75,6 +75,14 @@ export default function PostOwnerOptions({ writerPk, postPk }: Props) {
             }
 
             const data = await response.json()
+            
+            if(!data.postDeleted) {
+                setModal({
+                    modalTitle: "문제",
+                    modalMessage: `삭제가 정상적으로 이루어지지 않았습니다. PostPk: ${data.postPk}`,
+                    onClose: () => setModal(null)
+                })
+            }
 
             setModal({
                 modalTitle: "삭제",

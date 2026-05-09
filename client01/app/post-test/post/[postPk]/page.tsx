@@ -2,7 +2,8 @@ import { publicEnv } from "@/lib/env.public";
 import { notFound } from "next/navigation";
 import PostOwnerOptions from "@/components/PostOwnerOptions";
 
-export default async function PostDetailPage({ params }: { params: Promise<{postPk: string}> }) { 
+export default async function PostDetailPage(
+    { params }: { params: Promise<{postPk: string}> }) { 
     
     const { postPk } = await params
 

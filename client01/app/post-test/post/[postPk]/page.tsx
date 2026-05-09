@@ -1,5 +1,6 @@
 import { publicEnv } from "@/lib/env.public";
 import { notFound } from "next/navigation";
+import PostOwnerOptions from "@/components/PostOwnerOptions";
 
 export default async function PostDetailPage({ params }: { params: Promise<{postPk: string}> }) { 
     
@@ -25,6 +26,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{post
         writerId: ""
     }
     try {
+        console.log("postRequest")
         const postResponse = await fetch(`${publicEnv.API_URL}/post/${postPk}`)
 
         if(!postResponse.ok) {
@@ -39,6 +41,7 @@ export default async function PostDetailPage({ params }: { params: Promise<{post
 
     return (
         <main className="flex-1 flex flex-col items-center justify-start p-6 gap-6">
+            <PostOwnerOptions writerPk={data.writerPk} postPk={Number(postPk)} />
             <h1 className="text-xl font-bold">{data.postTitle}</h1>
             <div>{data.writerId}</div>
             <article>{data.postContent}</article>

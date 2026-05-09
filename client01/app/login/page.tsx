@@ -60,7 +60,8 @@ export default function LoginPage() {
             }
 
             dispatch(loginSuccess({
-                memberName: data.memberName
+                memberName: data.memberName,
+                memberPk: data.memberPk
             }))
 
             setLoginDone(true);

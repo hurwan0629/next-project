@@ -26,7 +26,10 @@ export default function AuthInitializer() {
                 }
 
                 const data = await response.json();
-                dispatch(loginSuccess({memberName: data?.name}))
+                dispatch(loginSuccess({
+                    memberName: data?.memberName,
+                    memberPk: data?.memberPk
+                }))
             } catch {
                 dispatch(authChecked());
             }

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type Member = {
+export type Member = {
     memberPk: number;
     memberName?: string;
 }

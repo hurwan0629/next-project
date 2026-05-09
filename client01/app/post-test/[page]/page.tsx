@@ -16,7 +16,7 @@ export default async function PostPage({ params, }: {params: Promise<{ page: str
             maxPageCount = (await pageCountResponse.json()).maxPageCount
         }
     } catch (e) {
-        maxPageCount = e instanceof Error ? e.message : String(e)
+        console.log(e)
     }
 
     // 게시글 목록 가져오기
@@ -38,10 +38,6 @@ export default async function PostPage({ params, }: {params: Promise<{ page: str
         postList = await postListResponse.json();
     } catch (error) {
         console.log(error)
-    }
-
-    function gotoPost(postPk: number) {
-
     }
 
     
@@ -142,14 +138,16 @@ export default async function PostPage({ params, }: {params: Promise<{ page: str
                                         </Link>
                                     )
                                 }
-                                return (
-                                    <Link 
-                                    key={index+1}
-                                    href={`/post-test/${index+1}`}
-                                    className="flex w-6 h-6 rounded-sm border border-black hover:shadow-md bg-gray-200 items-center justify-center">
-                                        {index+1}
-                                    </Link>
-                                )
+                                else {
+                                    return (
+                                        <Link 
+                                        key={index+1}
+                                        href={`/post-test/${index+1}`}
+                                        className="flex w-6 h-6 rounded-sm border border-black hover:shadow-md bg-gray-200 items-center justify-center">
+                                            {index+1}
+                                        </Link>
+                                    )
+                                }
                             })}
                             <span className="flex w-6 h-6 items-center justify-center">...</span>
                             {Array.from({ length: 4 }, (_, index) => {
@@ -163,14 +161,16 @@ export default async function PostPage({ params, }: {params: Promise<{ page: str
                                         </Link>
                                     )
                                 }
-                                return (
-                                    <Link 
-                                    key={maxPageCount - 4 + index}
-                                    href={`/post-test/${maxPageCount - 4 + index}`}
-                                    className="flex w-6 h-6 rounded-sm border border-black hover:shadow-md bg-gray-200 items-center justify-center">
-                                        {maxPageCount - 4 + index}
-                                    </Link>
-                                )
+                                else {
+                                    return (
+                                        <Link 
+                                        key={maxPageCount - 4 + index}
+                                        href={`/post-test/${maxPageCount - 4 + index}`}
+                                        className="flex w-6 h-6 rounded-sm border border-black hover:shadow-md bg-gray-200 items-center justify-center">
+                                            {maxPageCount - 4 + index}
+                                        </Link>
+                                    )
+                                }
                             })}
                             {
                                 Number(page) < maxPageCount
